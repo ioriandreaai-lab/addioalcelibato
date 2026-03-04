@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADDIO AL CELIBATO · Senior Veroni</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #E8A838;
+  --gold-light: #F5D380;
+  --dark: #0A0A0F;
+  --darker: #06060A;
+  --navy: #0D1B2A;
+  --blue: #1B2D45;
+  --orange: #FF6B35;
+  --red: #E63946;
+  --white: #F1EDEA;
+  --gray: #8A8A9A;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--darker); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 2rem;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,168,56,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(255,107,53,0.06) 0%, transparent 50%),
+    var(--dark);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--dark), transparent);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: 1px solid var(--gold);
+  border-radius: 50px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  animation: fadeDown 1s ease 0.2s both;
+}
+
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: 0.85;
+  letter-spacing: -2px;
+  color: var(--white);
+  animation: fadeDown 1s ease 0.4s both;
+}
+
+.hero h1 span {
+  display: block;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: var(--gray);
+  margin-top: 1.5rem;
+  letter-spacing: 2px;
+  animation: fadeDown 1s ease 0.6s both;
+}
+
+.hero-date {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  animation: fadeDown 1s ease 0.8s both;
+}
+
+.hero-date .date-block {
+  text-align: center;
+}
+
+.hero-date .date-block .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.hero-date .date-block .label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.hero-date .sep {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+/* ========== COUNTDOWN ========== */
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+  animation: fadeDown 1s ease 0.7s both;
+}
+
+.countdown-item { text-align: center; }
+
+.countdown-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  line-height: 1;
+  background: linear-gradient(180deg, var(--white) 40%, var(--gray) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 2.2ch;
+}
+
+.countdown-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+.countdown-sep {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--gold);
+  opacity: 0.5;
+  padding-bottom: 1.2rem;
+  animation: pulse 1s infinite;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2s infinite, fadeDown 1s ease 1.2s both;
+}
+
+.scroll-hint span {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-hint span::after {
+  content: '';
+  width: 4px; height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollDot 2s infinite;
+}
+
+/* ========== SECTIONS ========== */
+section { padding: 5rem 1.5rem; position: relative; }
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 0.95;
+  margin-bottom: 2rem;
+}
+
+/* ========== PROGRAM CARDS ========== */
+.program { 
+  max-width: 900px; 
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse 70% 30% at 80% 100%, rgba(232,168,56,0.05) 0%, transparent 60%),
+    transparent;
+}
+
+.day-card {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.3s;
+}
+
+.day-card:hover {
+  border-color: rgba(232,168,56,0.3);
+  transform: translateY(-4px);
+}
+
+.day-card-img {
+  margin: -2.5rem -2.5rem 1.5rem -2.5rem;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 19px 19px 0 0;
+  position: relative;
+}
+
+.day-card-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top, rgba(10,10,15,0.9), transparent);
+}
+
+.day-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.day-card:hover .day-card-img img {
+  transform: scale(1.05);
+}
+
+.day-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+
+.day-card.friday::before { background: linear-gradient(to bottom, var(--gold), var(--orange)); }
+.day-card.boat::before { background: linear-gradient(to bottom, #1B9AAA, #06D6A0); }
+.day-card.saturday::before { background: linear-gradient(to bottom, var(--orange), var(--red)); }
+.day-card.sunday::before { background: linear-gradient(to bottom, var(--blue), var(--gold)); }
+
+.day-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.friday .day-tag { background: rgba(232,168,56,0.15); color: var(--gold); }
+.saturday .day-tag { background: rgba(255,107,53,0.15); color: var(--orange); }
+.sunday .day-tag { background: rgba(27,45,69,0.5); color: var(--gold-light); }
+
+.day-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.day-card p {
+  color: var(--gray);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.day-card .emoji-icon {
+  font-size: 2.5rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  opacity: 0.7;
+}
+
+.day-card a {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232,168,56,0.3);
+  transition: border-color 0.3s;
+  padding: 2px 0;
+}
+
+.day-card a:hover { border-color: var(--gold); }
+
+.day-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.timeline-item .time {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold);
+  min-width: 50px;
+  padding-top: 2px;
+}
+
+.timeline-item .desc {
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ========== REACTIONS ========== */
+.reactions {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.reactions-cta {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.reactions-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.reaction-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reaction-btn:hover, .reaction-btn.active {
+  background: rgba(232,168,56,0.12);
+  border-color: rgba(232,168,56,0.3);
+  transform: scale(1.05);
+}
+
+.reaction-btn.active {
+  border-color: var(--gold);
+}
+
+.reaction-btn:active {
+  transform: scale(0.92);
+}
+
+.re {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.rc {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gray);
+  min-width: 1ch;
+}
+
+.reaction-btn.active .rc {
+  color: var(--gold);
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.reaction-btn.pop .re {
+  animation: pop 0.3s ease;
+}
+
+/* FLOATING EMOJI */
+.floating-emoji {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 9998;
+  animation: floatUp 2s ease-out forwards;
+  opacity: 1;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-60px) scale(1.3) rotate(-8deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-180px) scale(1.1) rotate(5deg);
+  }
+  80% {
+    opacity: 0.4;
+    transform: translateY(-320px) scale(0.9) rotate(-3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-450px) scale(0.6) rotate(8deg);
+  }
+}
+
+/* ========== LEVEL BARS ========== */
+.level-bar {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.level-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.level-bar-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.level-bar-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.friday .level-bar-value { color: var(--gold); }
+.saturday .level-bar-value { color: var(--orange); }
+.boat .level-bar-value { color: #06D6A0; }
+.sunday .level-bar-value { color: var(--red); }
+
+.level-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.level-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  width: 0%;
+  animation: fillBar 1.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.level-bar-fill.animate { animation-play-state: running; }
+
+.friday-fill { background: linear-gradient(90deg, var(--gold), var(--orange)); }
+.boat-fill { background: linear-gradient(90deg, #1B9AAA, #06D6A0); }
+.saturday-fill { background: linear-gradient(90deg, var(--orange), var(--red)); }
+.sunday-fill { background: linear-gradient(90deg, var(--red), #ff0044); }
+
+@keyframes fillBar {
+  from { width: 0%; }
+  to { width: var(--fill-width); }
+}
+
+/* ========== BUDGET ========== */
+.budget-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.budget-card {
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+}
+
+.price-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 15vw, 9rem);
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.price-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--gray);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.allinclusive-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, rgba(232,168,56,0.15), rgba(255,107,53,0.1));
+  border: 1px solid rgba(232,168,56,0.3);
+  border-radius: 50px;
+  margin-bottom: 2rem;
+  animation: glowPulse 3s infinite;
+}
+
+.ai-icon { font-size: 1.1rem; }
+
+.allinclusive-badge span:last-child {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(232,168,56,0.1); }
+  50% { box-shadow: 0 0 30px rgba(232,168,56,0.2); }
+}
+
+.cost-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+}
+
+.cost-row.total {
+  background: rgba(232,168,56,0.08);
+  border: 1px solid rgba(232,168,56,0.15);
+  margin-top: 4px;
+}
+
+.cost-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cost-icon { font-size: 1.3rem; }
+
+.cost-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.cost-detail {
+  font-size: 0.7rem;
+  color: var(--gray);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.cost-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.cost-divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 8px 0;
+}
+
+.note-box {
+  padding: 1.5rem;
+  background: rgba(230,57,70,0.08);
+  border: 1px solid rgba(230,57,70,0.2);
+  border-radius: 12px;
+  margin-top: 1.5rem;
+}
+
+.note-box h4 {
+  color: var(--red);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.note-box p {
+  color: var(--gray);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ========== DRIVE LINK ========== */
+.photos-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.drive-zone {
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.drive-zone:hover {
+  border-color: rgba(232,168,56,0.3);
+  background: rgba(232,168,56,0.05);
+  transform: translateY(-4px);
+}
+
+.drive-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.drive-zone h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.drive-zone p {
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.drive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.drive-btn.primary {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: var(--dark);
+}
+
+.drive-zone:hover .drive-btn.primary {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(232,168,56,0.3);
+}
+
+/* ========== FAQ ========== */
+.faq-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faq-item {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  transition: border-color 0.3s;
+}
+
+.faq-item.open {
+  border-color: rgba(232,168,56,0.2);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  gap: 16px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s;
+}
+
+.faq-q:hover { color: var(--gold); }
+
+.faq-arrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  line-height: 1;
+}
+
+.faq-item.open .faq-arrow {
+  transform: rotate(45deg);
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 20px;
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding: 0 20px 18px;
+}
+
+/* ========== NAV ========== */
+.nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+}
+
+.nav a {
+  padding: 10px 18px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+  background: rgba(232,168,56,0.15);
+  color: var(--gold);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 3rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gray);
+  letter-spacing: 2px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@keyframes scrollDot {
+  0% { opacity: 1; top: 6px; }
+  100% { opacity: 0; top: 20px; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero { padding: 1.5rem; min-height: 100svh; }
+  .hero-badge { font-size: 0.6rem; letter-spacing: 2px; padding: 6px 14px; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: clamp(3.5rem, 18vw, 6rem); }
+  .hero-sub { font-size: 0.75rem; letter-spacing: 1.5px; margin-top: 1rem; }
+  .countdown { gap: 0.5rem; margin-top: 1.8rem; }
+  .countdown-num { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .countdown-label { font-size: 0.5rem; letter-spacing: 1px; }
+  .countdown-sep { font-size: 1.8rem; padding-bottom: 1rem; }
+  .hero-date { gap: 0.8rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+  .hero-date .date-block .num { font-size: 2rem; }
+  .hero-date .sep { width: 24px; }
+
+  section { padding: 3rem 1rem; }
+  .section-label { font-size: 0.6rem; letter-spacing: 3px; }
+  .section-title { font-size: clamp(2rem, 10vw, 3.5rem); margin-bottom: 1.5rem; }
+
+  .day-card { padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 16px; }
+  .day-card-img { margin: -1.2rem -1.2rem 1.2rem -1.2rem; height: 180px; border-radius: 15px 15px 0 0; }
+  .day-card .emoji-icon { display: none; }
+  .day-card h3 { font-size: 1.8rem; }
+  .day-tag { font-size: 0.6rem; letter-spacing: 2px; padding: 3px 10px; }
+
+  .timeline-item { gap: 0.8rem; }
+  .timeline-item .time { font-size: 0.65rem; min-width: 42px; }
+  .timeline-item .desc { font-size: 0.85rem; }
+
+  .budget-card { padding: 1.5rem; border-radius: 16px; }
+  .price-big { font-size: clamp(4rem, 20vw, 7rem); }
+  .price-sub { font-size: 0.7rem; margin-bottom: 1.5rem; }
+  .includes-grid { grid-template-columns: 1fr; gap: 8px; }
+  .include-item { font-size: 0.85rem; padding: 10px 14px; border-radius: 10px; }
+  .cost-row { padding: 12px; border-radius: 10px; }
+  .cost-name { font-size: 0.8rem; }
+  .cost-detail { font-size: 0.6rem; }
+  .cost-amount { font-size: 1.2rem; }
+  .cost-icon { font-size: 1.1rem; }
+  .note-box { padding: 1.2rem; border-radius: 10px; }
+  .note-box p { font-size: 0.8rem; }
+
+  .drive-zone { padding: 2rem 1.5rem; border-radius: 16px; }
+  .drive-zone h3 { font-size: 1.4rem; }
+  .drive-zone p { font-size: 0.8rem; }
+  .drive-btn { padding: 14px 22px; font-size: 0.7rem; }
+
+  .faq-q { padding: 14px 16px; font-size: 0.85rem; }
+  .faq-a { font-size: 0.8rem; }
+  .faq-item.open .faq-a { padding: 0 16px 14px; }
+
+  .nav { bottom: 0.8rem; gap: 2px; padding: 4px; border-radius: 40px; }
+  .nav a { padding: 8px 12px; font-size: 0.55rem; letter-spacing: 0.5px; }
+
+  footer { padding: 2rem 1rem 5rem; font-size: 0.6rem; }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .hero h1 { font-size: 3rem; }
+  .hero-date .date-block .num { font-size: 1.8rem; }
+  .hero-date .sep { width: 16px; }
+  .nav a { padding: 6px 8px; font-size: 0.5rem; }
+  .day-card h3 { font-size: 1.5rem; }
+}
+
+/* Safe area for phones with notch/gesture bar */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .nav { bottom: calc(0.8rem + env(safe-area-inset-bottom)); }
+  footer { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
+
+/* Touch improvements */
+@media (hover: none) {
+  .day-card:hover { transform: none; border-color: var(--glass-border); }
+  .day-card:hover .day-card-img img { transform: none; }
+  .day-card:active { transform: scale(0.99); }
+  .gallery-item:hover img { transform: none; }
+  .nav a:hover { background: none; color: var(--gray); }
+  .nav a.active { background: rgba(232,168,56,0.15); color: var(--gold); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge"><span class="dot"></span> ADDIO AL CELIBATO</div>
+  <h1>
+    SENIOR<br>
+    <span>VERONI</span>
+  </h1>
+  <p class="hero-sub">MARCHE · MARE · MUSICA</p>
+  <div class="hero-date">
+    <div class="date-block">
+      <div class="num">12</div>
+      <div class="label">VEN</div>
+    </div>
+    <div class="sep"></div>
+    <div class="date-block">
+      <div class="num">13</div>
+      <div class="label">SAB</div>
+    </div>
+    <div class="sep"></div>
+    <div class="date-block">
+      <div class="num">14</div>
+      <div class="label">DOM</div>
+    </div>
+    <div class="date-block" style="margin-left: 0.5rem;">
+      <div class="num" style="font-size: 1.5rem; color: var(--gray);">GIU</div>
+      <div class="label">2026</div>
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-days">00</div>
+      <div class="countdown-label">Giorni</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-hours">00</div>
+      <div class="countdown-label">Ore</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-mins">00</div>
+      <div class="countdown-label">Min</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-secs">00</div>
+      <div class="countdown-label">Sec</div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- PROGRAMMA -->
+<section id="programma">
+  <div class="program">
+    <div class="section-label">// Il Piano</div>
+    <div class="section-title">PROGRAMMA</div>
+
+    <!-- VENERDÌ -->
+    <div class="day-card friday">
+      <div class="day-card-img"><img src="https://lh3.googleusercontent.com/p/AF1QipORUC9yjcww-emrfc1LeDIBtFNTOb5Q1_Ct1oHM=s1360-w1360-h1020-rw" alt="Villa Mei"></div>
+      <span class="emoji-icon">🏊‍♂️</span>
+      <div class="day-tag">Venerdì 12 Giugno</div>
+      <h3>RELAX & WARM-UP</h3>
+      <div class="day-timeline">
+        <div class="timeline-item">
+          <div class="time">PM</div>
+          <div class="desc">Arrivo a scaglioni — pranzo o pomeriggio</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">16:00</div>
+          <div class="desc">Check-in a <a href="https://www.meicarni.com/ospitalita/" target="_blank">Villa Mei</a> — casale tutto per noi con piscina e parco</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">19:00</div>
+          <div class="desc">Drink di benvenuto & apericena a bordo piscina</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">22:00</div>
+          <div class="desc">Vinili fino a tardi 🎶</div>
+        </div>
+      </div>
+      <div class="level-bar">
+        <div class="level-bar-header">
+          <span class="level-bar-label">🔥 LIVELLO FOTTA</span>
+          <span class="level-bar-value">ESAGERATO</span>
+        </div>
+        <div class="level-bar-track">
+          <div class="level-bar-fill friday-fill" style="--fill-width: 85%"></div>
+        </div>
+      </div>
+      <div class="reactions" data-card="friday">
+        <span class="reactions-cta">Quanto ti gasa? 👇</span>
+        <div class="reactions-row">
+        <button class="reaction-btn" onclick="react('friday','🔥')"><span class="re">🔥</span><span class="rc" id="r-friday-fire">0</span></button>
+        <button class="reaction-btn" onclick="react('friday','🤩')"><span class="re">🤩</span><span class="rc" id="r-friday-star">0</span></button>
+        <button class="reaction-btn" onclick="react('friday','💯')"><span class="re">💯</span><span class="rc" id="r-friday-hundred">0</span></button>
+        <button class="reaction-btn" onclick="react('friday','🍾')"><span class="re">🍾</span><span class="rc" id="r-friday-champagne">0</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SABATO -->
+    <div class="day-card saturday boat">
+      <div class="day-card-img"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerEgzJvQT93TWZpBLTYAROeV_bInh8y0xV3h2Psaxt3ryRzbS6k_MXjVVEBqEv86jYVbeEyFLulk9iZ59unyTGhX7YcHaSNJur69AqtvBsGMoRPEcmyZVblnYnoRfYSmvYgM9phGMkZW2U=s1360-w1360-h1020-rw" alt="Due Sorelle Conero"></div>
+      <span class="emoji-icon">🚀</span>
+      <div class="day-tag">Sabato 13 Giugno</div>
+      <h3>MARE & BARCA</h3>
+      <div class="day-timeline">
+        <div class="timeline-item">
+          <div class="time">11:00</div>
+          <div class="desc">Arrivo a Marina Dorica</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">12:00</div>
+          <div class="desc">Pranzo, bagno e spiaggia nel Conero fino alle Due Sorelle</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">17:00</div>
+          <div class="desc">Rientro in marina, docce e preparativi</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">18:00</div>
+          <div class="desc">Si parte per il festival 🚌</div>
+        </div>
+      </div>
+      <div class="level-bar">
+        <div class="level-bar-header">
+          <span class="level-bar-label">😎 LIVELLO CHILL</span>
+          <span class="level-bar-value">ASSOLUTO</span>
+        </div>
+        <div class="level-bar-track">
+          <div class="level-bar-fill boat-fill" style="--fill-width: 95%"></div>
+        </div>
+      </div>
+      <div class="reactions" data-card="boat">
+        <span class="reactions-cta">Ci stai dentro? 🫡</span>
+        <div class="reactions-row">
+        <button class="reaction-btn" onclick="react('boat','🔥')"><span class="re">🔥</span><span class="rc" id="r-boat-fire">0</span></button>
+        <button class="reaction-btn" onclick="react('boat','🤩')"><span class="re">🤩</span><span class="rc" id="r-boat-star">0</span></button>
+        <button class="reaction-btn" onclick="react('boat','💯')"><span class="re">💯</span><span class="rc" id="r-boat-hundred">0</span></button>
+        <button class="reaction-btn" onclick="react('boat','⛵')"><span class="re">⛵</span><span class="rc" id="r-boat-sail">0</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SABATO SERA -->
+    <div class="day-card saturday">
+      <div class="day-card-img"><img src="https://adriaticsoundfestival.com/wp-content/uploads/2025/10/Adriatic-sound-festival-Home.jpg" alt="Adriatic Sound Festival"></div>
+      <span class="emoji-icon">🎶</span>
+      <div class="day-tag">Sabato 13 Notte</div>
+      <h3>ADRIATIC SOUND FESTIVAL</h3>
+      <div class="day-timeline">
+        <div class="timeline-item">
+          <div class="time">🌙 PM</div>
+          <div class="desc">Bus privato (nessuno guida!) verso l'<a href="https://adriaticsoundfestival.com" target="_blank">Adriatic Sound Festival</a> — si danza dentro l'aeroporto di Fano</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">NOTTE</div>
+          <div class="desc">Il bus ci riporta alla base</div>
+        </div>
+      </div>
+      <div class="level-bar">
+        <div class="level-bar-header">
+          <span class="level-bar-label">🤯 LIVELLO IGNORANZA</span>
+          <span class="level-bar-value">IMMENSO</span>
+        </div>
+        <div class="level-bar-track">
+          <div class="level-bar-fill saturday-fill" style="--fill-width: 100%"></div>
+        </div>
+      </div>
+      <div class="reactions" data-card="festival">
+        <span class="reactions-cta">Pronti a ballare? 🕺</span>
+        <div class="reactions-row">
+        <button class="reaction-btn" onclick="react('festival','🔥')"><span class="re">🔥</span><span class="rc" id="r-festival-fire">0</span></button>
+        <button class="reaction-btn" onclick="react('festival','🤩')"><span class="re">🤩</span><span class="rc" id="r-festival-star">0</span></button>
+        <button class="reaction-btn" onclick="react('festival','💯')"><span class="re">💯</span><span class="rc" id="r-festival-hundred">0</span></button>
+        <button class="reaction-btn" onclick="react('festival','🎶')"><span class="re">🎶</span><span class="rc" id="r-festival-music">0</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOMENICA -->
+    <div class="day-card sunday">
+      <span class="emoji-icon">😎</span>
+      <div class="day-tag">Domenica 14 Giugno</div>
+      <h3>RESURREZIONE</h3>
+      <div class="day-timeline">
+        <div class="timeline-item">
+          <div class="time">AM</div>
+          <div class="desc">Risveglio lento, piscina e relax</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">13:00</div>
+          <div class="desc">Pranzo riparatore tutti insieme</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">PM</div>
+          <div class="desc">Rientro 🫡</div>
+        </div>
+      </div>
+      <div class="level-bar">
+        <div class="level-bar-header">
+          <span class="level-bar-label">💀 LIVELLO HANGOVER</span>
+          <span class="level-bar-value">100%</span>
+        </div>
+        <div class="level-bar-track">
+          <div class="level-bar-fill sunday-fill" style="--fill-width: 100%"></div>
+        </div>
+      </div>
+      <div class="reactions" data-card="sunday">
+        <span class="reactions-cta">Sopravviverai? 😵‍💫</span>
+        <div class="reactions-row">
+        <button class="reaction-btn" onclick="react('sunday','🔥')"><span class="re">🔥</span><span class="rc" id="r-sunday-fire">0</span></button>
+        <button class="reaction-btn" onclick="react('sunday','🤩')"><span class="re">🤩</span><span class="rc" id="r-sunday-star">0</span></button>
+        <button class="reaction-btn" onclick="react('sunday','💯')"><span class="re">💯</span><span class="rc" id="r-sunday-hundred">0</span></button>
+        <button class="reaction-btn" onclick="react('sunday','💀')"><span class="re">💀</span><span class="rc" id="r-sunday-skull">0</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget">
+  <div class="budget-section">
+    <div class="section-label">// Money & Regole</div>
+    <div class="section-title">QUOTA</div>
+
+    <div class="budget-card">
+      <div class="price-big">€400</div>
+      <div class="price-sub">A TESTA</div>
+      <div class="allinclusive-badge">
+        <span class="ai-icon">⚡</span>
+        <span>ALL INCLUSIVE — NON DOVETE PENSARE A NULLA</span>
+      </div>
+
+      <div class="cost-breakdown">
+        <div class="cost-row">
+          <div class="cost-left">
+            <span class="cost-icon">🏡</span>
+            <div>
+              <div class="cost-name">Villa — 2 notti in esclusiva</div>
+              <div class="cost-detail">Totale gruppo</div>
+            </div>
+          </div>
+          <div class="cost-amount">€3.000</div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-left">
+            <span class="cost-icon">⛵</span>
+            <div>
+              <div class="cost-name">Barca — 2 barche al Conero</div>
+              <div class="cost-detail">Totale gruppo</div>
+            </div>
+          </div>
+          <div class="cost-amount">€1.400</div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-left">
+            <span class="cost-icon">🎶</span>
+            <div>
+              <div class="cost-name">Festival — Biglietto ingresso</div>
+              <div class="cost-detail">A testa</div>
+            </div>
+          </div>
+          <div class="cost-amount">€60</div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-left">
+            <span class="cost-icon">🚌</span>
+            <div>
+              <div class="cost-name">Pullman privato — tutto il giorno</div>
+              <div class="cost-detail">Totale gruppo</div>
+            </div>
+          </div>
+          <div class="cost-amount">€800</div>
+        </div>
+        <div class="cost-row">
+          <div class="cost-left">
+            <span class="cost-icon">🍻</span>
+            <div>
+              <div class="cost-name">Cassa comune</div>
+              <div class="cost-detail">Festa venerdì sera + pranzo in barca</div>
+            </div>
+          </div>
+          <div class="cost-amount">€100</div>
+        </div>
+      </div>
+
+      <div class="cost-divider"></div>
+
+      <div class="cost-row total">
+        <div class="cost-left">
+          <span class="cost-icon">🎩</span>
+          <div>
+            <div class="cost-name">Il Senior Veroni non paga</div>
+            <div class="cost-detail">Ovviamente è nostro ospite</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <h4>⚠️ Nota Importante</h4>
+        <p>La quota è <strong style="color:var(--white)">FISSA</strong> e viene divisa in parti uguali tra tutti i partecipanti confermati. Chi riesce a scendere solo Sabato è il benvenuto, ma la quota non cambia: i costi (Villa, Bus, Barca) sono fissi e prenotati per il gruppo intero.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-section">
+    <div class="section-label">// Domande & Risposte</div>
+    <div class="section-title">FAQ</div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Non riesco a prendere venerdì di ferie. Posso venire lo stesso?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Certo! Consiglio di partire dopo lavoro venerdì sera o sabato mattina presto, in modo da arrivare in tempo per la barca alle 11.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Sabato dopo la barca torniamo in villa?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">No! Preparate uno zaino con il cambio per il festival e portatelo in barca. Lo lascerete sul pullman che ci aspetta in marina. Dalla barca si va dritti alla serata.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Posso fare la doccia dopo la barca?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Sì, la marina è attrezzata con docce. Ci prepariamo lì per la serata.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Devo comprare qualcosa?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">No, pensiamo a tutto noi. Porta solo te stesso e la voglia di spaccare. 🔥</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Partiamo tutti insieme il venerdì?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Parliamone! Eventualmente possiamo trovarci e partire tutti insieme. Pulmino birichino? 😏</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Mi serve la macchina là?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">No. Arrivati in villa non la toccate più. Il pullman ci porta ovunque.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Che giro facciamo in barca?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Partiamo da Marina Dorica e in circa 1h30 siamo al Conero, alle Due Sorelle — il posto più bello della costa. Bagno, sole e pranzo di pesce a bordo.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Il pranzo del sabato è incluso?</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">Sì! Lo organizziamo noi e mangiamo tutti insieme in barca. È coperto dalla cassa comune.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOTO -->
+<section id="foto">
+  <div class="photos-section">
+    <div class="section-label">// Ricordi</div>
+    <div class="section-title">LE FOTO</div>
+
+    <div class="drive-zone" onclick="window.open('https://drive.google.com/drive/folders/1NJ-7oQgEoY1R4oAzssTnIlRWnAtQm20U?usp=drive_link', '_blank')">
+      <span class="drive-icon">📸</span>
+      <h3>Le foto del weekend</h3>
+      <p>Tutte le foto e i video del weekend in un unico posto.<br>Clicca per aprire la cartella condivisa su Google Drive.</p>
+      <div class="drive-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Apri Google Drive
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#home">Home</a>
+  <a href="#programma">Programma</a>
+  <a href="#budget">Quota</a>
+  <a href="#faq">FAQ</a>
+  <a href="#foto">Foto</a>
+</nav>
+
+<footer>DAJE 🔥 · ADDIO AL CELIBATO · GIUGNO 2026</footer>
+
+<script>
+// ===== COUNTDOWN =====
+const targetDate = new Date('2026-06-12T12:00:00').getTime();
+
+function updateCountdown() {
+  const now = Date.now();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div style="font-family:Bebas Neue,sans-serif;font-size:clamp(2rem,6vw,3.5rem);background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">SI PARTE! 🔥</div>';
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ===== EMOJI REACTIONS (Google Sheets) =====
+const SHEET_API = 'https://script.google.com/macros/s/AKfycbxuU_svUGXwOf1U8-_U5Ap7P_BX-4LQpzOmfknI2LKQwOUVitT3c7hGYgTdauXFsDbz/exec';
+
+const emojiMap = {
+  'friday-🔥': 'r-friday-fire', 'friday-🤩': 'r-friday-star', 'friday-💯': 'r-friday-hundred', 'friday-🍾': 'r-friday-champagne',
+  'boat-🔥': 'r-boat-fire', 'boat-🤩': 'r-boat-star', 'boat-💯': 'r-boat-hundred', 'boat-⛵': 'r-boat-sail',
+  'festival-🔥': 'r-festival-fire', 'festival-🤩': 'r-festival-star', 'festival-💯': 'r-festival-hundred', 'festival-🎶': 'r-festival-music',
+  'sunday-🔥': 'r-sunday-fire', 'sunday-🤩': 'r-sunday-star', 'sunday-💯': 'r-sunday-hundred', 'sunday-💀': 'r-sunday-skull'
+};
+
+let myReactions = {};
+
+function spawnFloatingEmoji(emoji, btn) {
+  const rect = btn.getBoundingClientRect();
+  const count = 3 + Math.floor(Math.random() * 3);
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'floating-emoji';
+    el.textContent = emoji;
+    const offsetX = (Math.random() - 0.5) * 80;
+    el.style.left = (rect.left + rect.width / 2 + offsetX) + 'px';
+    el.style.top = rect.top + 'px';
+    el.style.fontSize = (1.4 + Math.random() * 1.2) + 'rem';
+    el.style.animationDuration = (1.5 + Math.random() * 1) + 's';
+    el.style.animationDelay = (i * 0.1) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+// Carica reactions dal Google Sheet all'avvio
+async function loadReactions() {
+  try {
+    const res = await fetch(SHEET_API + '?action=get');
+    const data = await res.json();
+    if (data.status === 'ok' && data.reactions) {
+      for (const [key, count] of Object.entries(data.reactions)) {
+        const elId = emojiMap[key];
+        if (elId) {
+          const el = document.getElementById(elId);
+          if (el) el.textContent = count;
+        }
+      }
+    }
+  } catch (e) { console.log('Errore caricamento reactions:', e); }
+}
+
+async function react(card, emoji) {
+  const key = card + '-' + emoji;
+  const elId = emojiMap[key];
+  if (!elId) return;
+  const el = document.getElementById(elId);
+  const btn = el.closest('.reaction-btn');
+  let currentCount = parseInt(el.textContent) || 0;
+
+  if (myReactions[key]) {
+    // Undo
+    currentCount = Math.max(0, currentCount - 1);
+    delete myReactions[key];
+    btn.classList.remove('active');
+    el.textContent = currentCount;
+    fetch(SHEET_API + '?action=react&card=' + encodeURIComponent(card) + '&emoji=' + encodeURIComponent(emoji) + '&delta=-1');
+  } else {
+    // React
+    currentCount++;
+    myReactions[key] = true;
+    btn.classList.add('active', 'pop');
+    spawnFloatingEmoji(emoji, btn);
+    setTimeout(() => btn.classList.remove('pop'), 300);
+    el.textContent = currentCount;
+    fetch(SHEET_API + '?action=react&card=' + encodeURIComponent(card) + '&emoji=' + encodeURIComponent(emoji) + '&delta=1');
+  }
+}
+
+loadReactions();
+
+// ===== FAQ TOGGLE =====
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ===== NAV ACTIVE STATE =====
+const navLinks = document.querySelectorAll('.nav a');
+const sections = document.querySelectorAll('section');
+
+// ===== LEVEL BAR ANIMATION ON SCROLL =====
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate');
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.level-bar-fill').forEach(bar => barObserver.observe(bar));
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 200;
+    if (scrollY >= top) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
