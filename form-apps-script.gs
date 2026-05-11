@@ -13,7 +13,7 @@ const SHEET_NAME = 'Check-in';
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SpreadsheetApp.openById('1c__Ytm1zlpZw60PnFdrjuy2B85kwQzzdBLkWjnzHNkA');
     let sheet = ss.getSheetByName(SHEET_NAME);
 
     // Crea il foglio con intestazioni se non esiste
