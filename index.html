@@ -939,6 +939,29 @@ section { padding: 5rem 1.5rem; position: relative; }
   margin: 0 auto;
 }
 
+.copy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  color: var(--gray);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 2rem;
+}
+
+.copy-link-btn:hover {
+  border-color: rgba(232,168,56,0.3);
+  color: var(--gold);
+}
+
 .form-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -1725,6 +1748,10 @@ footer {
   <div class="form-section">
     <div class="section-label">// Ultime cose da sistemare</div>
     <div class="section-title">CHECK-IN</div>
+    <button class="copy-link-btn" onclick="copyFormLink()" id="copyLinkBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      <span id="copyLinkText">Condividi link al form</span>
+    </button>
 
     <div class="form-card">
       <div id="formContent">
@@ -2048,7 +2075,7 @@ async function submitForm(e) {
     await fetch(FORM_API, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload)
     });
     document.getElementById('formContent').style.display = 'none';
@@ -2058,6 +2085,15 @@ async function submitForm(e) {
     btn.textContent = 'INVIA CHECK-IN';
     alert('Errore nell\'invio. Riprova.');
   }
+}
+
+function copyFormLink() {
+  const url = 'https://addioseniorveroni.vercel.app/#form';
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('copyLinkText');
+    btn.textContent = 'Link copiato! ✓';
+    setTimeout(() => btn.textContent = 'Condividi link al form', 2000);
+  });
 }
 
 // ===== NAV ACTIVE STATE =====
