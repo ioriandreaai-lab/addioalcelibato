@@ -933,6 +933,222 @@ section { padding: 5rem 1.5rem; position: relative; }
   padding: 0 20px 18px;
 }
 
+/* ========== FORM ========== */
+.form-section {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(20px);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.form-sublabel {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: border-color 0.3s, background 0.3s;
+  -webkit-appearance: none;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(232,168,56,0.05);
+}
+
+.form-input::placeholder { color: rgba(138,138,154,0.5); }
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.radio-option:hover {
+  border-color: rgba(232,168,56,0.3);
+  background: rgba(232,168,56,0.05);
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-dot {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gray);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.radio-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-dot {
+  border-color: var(--gold);
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-dot::after {
+  opacity: 1;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-text {
+  color: var(--white);
+}
+
+.radio-option.selected {
+  border-color: rgba(232,168,56,0.4);
+  background: rgba(232,168,56,0.08);
+}
+
+.radio-text {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--gray);
+  transition: color 0.3s;
+}
+
+.radio-extra {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.form-divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 2rem 0;
+}
+
+.reminder-box {
+  background: rgba(255,107,53,0.06);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.reminder-box .reminder-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 0.4rem;
+}
+
+.reminder-box .reminder-text {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.form-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  border: none;
+  border-radius: 12px;
+  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity 0.3s, transform 0.2s;
+  margin-top: 2rem;
+}
+
+.form-submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.form-submit-btn:active { transform: translateY(0); }
+.form-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.form-success .success-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.form-success h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+}
+
+.form-success p {
+  color: var(--gray);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
 /* ========== NAV ========== */
 .nav {
   position: fixed;
@@ -1504,6 +1720,139 @@ footer {
   </div>
 </section>
 
+<!-- FORM -->
+<section id="form">
+  <div class="form-section">
+    <div class="section-label">// Ultime cose da sistemare</div>
+    <div class="section-title">CHECK-IN</div>
+
+    <div class="form-card">
+      <div id="formContent">
+        <form id="checkInForm" onsubmit="submitForm(event)">
+
+          <!-- Nome e cognome -->
+          <div class="form-group">
+            <label class="form-label">Nome e Cognome</label>
+            <input type="text" class="form-input" id="nome" name="nome" placeholder="Mario Rossi" required>
+          </div>
+
+          <!-- Arrivo -->
+          <div class="form-group">
+            <label class="form-label">Quando arrivi?</label>
+            <div class="radio-group" id="arrivoGroup">
+              <label class="radio-option" onclick="selectRadio(this, 'arrivo', 'Venerdì pomeriggio')">
+                <input type="radio" name="arrivo" value="Venerdì pomeriggio" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Venerdì pomeriggio</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'arrivo', 'Venerdì sera')">
+                <input type="radio" name="arrivo" value="Venerdì sera" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Venerdì sera</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'arrivo', 'Sabato mattina')">
+                <input type="radio" name="arrivo" value="Sabato mattina" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Sabato mattina</span>
+              </label>
+              <label class="radio-option" id="altroOption" onclick="selectRadio(this, 'arrivo', 'Altro')">
+                <input type="radio" name="arrivo" value="Altro" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Altro</span>
+              </label>
+            </div>
+            <div class="radio-extra" id="altroExtra" style="display:none; margin-top:10px;">
+              <input type="text" class="form-input" id="altroText" name="arrivoAltro" placeholder="Specifica quando arrivi...">
+            </div>
+          </div>
+
+          <!-- Allergie -->
+          <div class="form-group">
+            <label class="form-label">Allergie alimentari</label>
+            <span class="form-sublabel">Lascia vuoto se non ne hai</span>
+            <input type="text" class="form-input" id="allergie" name="allergie" placeholder="Es. noci, latticini...">
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Grigliata -->
+          <div class="form-group">
+            <label class="form-label">Grigliata venerdì sera</label>
+            <span class="form-sublabel">Pensavamo di fare una grigliata con opzioni vegetariane il venerdì sera. Vi piace l'idea?</span>
+            <div class="radio-group">
+              <label class="radio-option" onclick="selectRadio(this, 'grigliata', 'Sì, ottima idea')">
+                <input type="radio" name="grigliata" value="Sì, ottima idea" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Sì, ottima idea 🔥</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'grigliata', 'No, preferirei altro')">
+                <input type="radio" name="grigliata" value="No, preferirei altro" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">No, preferirei altro</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'grigliata', 'Indifferente')">
+                <input type="radio" name="grigliata" value="Indifferente" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Indifferente, mangio tutto</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Reminder 1: modulo barca -->
+          <div class="reminder-box">
+            <div class="reminder-title">⚠️ Reminder</div>
+            <div class="reminder-text">Avete compilato e inviato il modulo per l'iscrizione alla barca a vela?</div>
+          </div>
+          <div class="form-group">
+            <div class="radio-group">
+              <label class="radio-option" onclick="selectRadio(this, 'barca', 'Sì, fatto')">
+                <input type="radio" name="barca" value="Sì, fatto" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Sì, l'ho già inviato ✓</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'barca', 'Non ancora')">
+                <input type="radio" name="barca" value="Non ancora" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Non ancora</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Reminder 2: soldi -->
+          <div class="reminder-box">
+            <div class="reminder-title">⚠️ Reminder</div>
+            <div class="reminder-text">Avete inviato i soldi? (€400 tramite bonifico)</div>
+          </div>
+          <div class="form-group">
+            <div class="radio-group">
+              <label class="radio-option" onclick="selectRadio(this, 'soldi', 'Sì, bonifico inviato')">
+                <input type="radio" name="soldi" value="Sì, bonifico inviato" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Sì, bonifico inviato ✓</span>
+              </label>
+              <label class="radio-option" onclick="selectRadio(this, 'soldi', 'Non ancora')">
+                <input type="radio" name="soldi" value="Non ancora" required>
+                <span class="radio-dot"></span>
+                <span class="radio-text">Non ancora</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit-btn" id="submitBtn">INVIA CHECK-IN</button>
+        </form>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">🔥</div>
+        <h3>Check-in completato!</h3>
+        <p>Ricevuto. Ci vediamo alle Marche!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOTO -->
 <section id="foto">
   <div class="photos-section">
@@ -1528,6 +1877,7 @@ footer {
   <a href="#programma">Programma</a>
   <a href="#budget">Quota</a>
   <a href="#faq">FAQ</a>
+  <a href="#form">Check-in</a>
   <a href="#foto">Foto</a>
 </nav>
 
@@ -1654,6 +2004,60 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   // Open clicked if it was closed
   if (!wasOpen) item.classList.add('open');
+}
+
+// ===== FORM =====
+const FORM_API = 'https://script.google.com/macros/s/INSERISCI_QUI_IL_DEPLOYMENT_ID/exec';
+
+function selectRadio(label, groupName, value) {
+  // Remove selected from all in group
+  document.querySelectorAll(`input[name="${groupName}"]`).forEach(r => {
+    r.closest('.radio-option').classList.remove('selected');
+  });
+  label.classList.add('selected');
+  label.querySelector('input[type="radio"]').checked = true;
+
+  // Show/hide "Altro" text input
+  if (groupName === 'arrivo') {
+    const extra = document.getElementById('altroExtra');
+    extra.style.display = value === 'Altro' ? 'block' : 'none';
+    if (value !== 'Altro') document.getElementById('altroText').value = '';
+  }
+}
+
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'INVIO IN CORSO...';
+
+  const form = e.target;
+  const arrivo = form.arrivo.value;
+  const arrivoFinal = arrivo === 'Altro' ? ('Altro: ' + (form.arrivoAltro.value || '')) : arrivo;
+
+  const payload = {
+    nome: form.nome.value.trim(),
+    arrivo: arrivoFinal,
+    allergie: form.allergie.value.trim() || 'Nessuna',
+    grigliata: form.grigliata.value,
+    barca: form.barca.value,
+    soldi: form.soldi.value,
+  };
+
+  try {
+    await fetch(FORM_API, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'INVIA CHECK-IN';
+    alert('Errore nell\'invio. Riprova.');
+  }
 }
 
 // ===== NAV ACTIVE STATE =====
